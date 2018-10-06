@@ -71,19 +71,28 @@
   </style>
 
   <script>
+  // First we use a query selector to connect to the CSS
   const secondHand = document.querySelector('.second-hand');
   const minHand = document.querySelector('.min-hand');
-
+  const hourHand = document.querySelector('.hour-hand');
 
   function setDate(){
-    const now = new Date();
+    const now = new Date(); // Then we created a function that first uses the getSeconds/Minutes/Hours in JS
+
     const seconds = now.getSeconds();
     const minutes = now.getMinutes();
+    const hours = now.getHours();
+
+// Calculating the offset to pass back to the CSS (see below)
     const secondsDegrees = ((seconds / 60) * 360) + 90;
     const minutesDegrees = ((minutes / 60) * 360) + 90;
+    const hoursDegrees = ((hours / 60) * 360) + 90;
+
+// Increasing the the rotation per second/minute/hour using transform
     secondHand.style.transform = `rotate(${secondsDegrees}deg)`;
     minHand.style.transform = `rotate(${minutesDegrees}deg)`;
-    console.log(seconds);
+    hourHand.style.transform = `rotate(${hoursDegrees}deg)`;
+
   }
 
   setInterval(setDate, 1000);
