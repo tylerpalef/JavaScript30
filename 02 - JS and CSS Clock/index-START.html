@@ -80,17 +80,15 @@
     const now = new Date(); // Then we created a function that first uses the getSeconds/Minutes/Hours in JS
 
     const seconds = now.getSeconds();
+    const secondsDegrees = ((seconds / 60) * 360) + 90; // Calculating the offset to pass back to the CSS (see below)
+    secondHand.style.transform = `rotate(${secondsDegrees}deg)`; // Increasing the the rotation per second/minute/hour using transform
+
     const minutes = now.getMinutes();
-    const hours = now.getHours();
-
-// Calculating the offset to pass back to the CSS (see below)
-    const secondsDegrees = ((seconds / 60) * 360) + 90;
     const minutesDegrees = ((minutes / 60) * 360) + 90;
-    const hoursDegrees = ((hours / 60) * 360) + 90;
-
-// Increasing the the rotation per second/minute/hour using transform
-    secondHand.style.transform = `rotate(${secondsDegrees}deg)`;
     minHand.style.transform = `rotate(${minutesDegrees}deg)`;
+
+    const hours = now.getHours();
+    const hoursDegrees = ((hours / 60) * 360) + 90;
     hourHand.style.transform = `rotate(${hoursDegrees}deg)`;
 
   }
