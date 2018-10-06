@@ -62,12 +62,31 @@
       background: black;
       position: absolute;
       top: 50%;
+      transform-origin: 100%; /* Keeps the clock moving, but staying centered */
+      transform: rotate(90deg);
+      transition: all 0.5s;
+      transition-timing-function: cubic-bezier(0.1, 2.7, 0.58, 1); /* Gives the hand some kick back */
     }
 
   </style>
 
   <script>
+  const secondHand = document.querySelector('.second-hand');
+  const minHand = document.querySelector('.min-hand');
 
+
+  function setDate(){
+    const now = new Date();
+    const seconds = now.getSeconds();
+    const minutes = now.getMinutes();
+    const secondsDegrees = ((seconds / 60) * 360) + 90;
+    const minutesDegrees = ((minutes / 60) * 360) + 90;
+    secondHand.style.transform = `rotate(${secondsDegrees}deg)`;
+    minHand.style.transform = `rotate(${minutesDegrees}deg)`;
+    console.log(seconds);
+  }
+
+  setInterval(setDate, 1000);
 
   </script>
 </body>
