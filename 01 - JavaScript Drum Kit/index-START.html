@@ -7,7 +7,7 @@
 </head>
 <body>
 
-
+<!-- Go to keycode.info to find the data-key value for each keyboard key -->
   <div class="keys">
     <div data-key="65" class="key">
       <kbd>A</kbd>
@@ -58,23 +58,29 @@
   <audio data-key="76" src="sounds/tink.wav"></audio>
 
 <script>
-  window.addEventListener('keydown', function (event){ // listen for key down that corresponds with the drum buttons.
+  function playSound(event){ // listen for key down that corresponds with the drum buttons.
     const audio = document.querySelector(`audio[data-key="${event.keyCode}"]`) // Track audi that matches the key press.
     const key = document.querySelector(`.key[data-key="${event.keyCode}"]`) // Track the key being pressed in preperation for adding the colour and resizing.
     if(!audio) return; // If there's no audio for the key, don't run the function.
     audio.currentTime = 0; // This allows us to play the button multiple times
     audio.play(); // Play the audio clip from the data set
     key.classList.add('playing');
-    console.log(key) //
-  });
+  };
+  // This was my original line of code, I had incorrect spacing on my if statement causing the code to error:
+  // function removeTransition(event){
+  //   if(event.propertyName !== 'transform') return;
+  //   this.classList.remove('playing');
+  // }
 
-  function removeTransition(event){
-    if(event.propertyName !== 'transform') return; // Making sure we only get transitions listened to
-    console.log(event.propertyName);
+  function removeTransition(event) {
+    if (event.propertyName !== 'transform') return; // Making sure we only get transitions listened to
+    event.target.classList.remove('playing');
   }
-  const key = document.querySelectorAll('.key');
-  key.forEach(key => addEventListener('transitionend', removeTransition));
 
+  const keys = document.querySelectorAll('.key');
+  keys.forEach(key => addEventListener('transitionend', removeTransition));
+
+  window.addEventListener('keydown', playSound) // Listener for key strokes
 </script>
 
 
