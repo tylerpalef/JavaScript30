@@ -64,8 +64,17 @@
     if(!audio) return; // If there's no audio for the key, don't run the function.
     audio.currentTime = 0; // This allows us to play the button multiple times
     audio.play(); // Play the audio clip from the data set
+    key.classList.add('playing');
     console.log(key) //
   });
+
+  function removeTransition(event){
+    if(event.propertyName !== 'transform') return; // Making sure we only get transitions listened to
+    console.log(event.propertyName);
+  }
+  const key = document.querySelectorAll('.key');
+  key.forEach(key => addEventListener('transitionend', removeTransition));
+
 </script>
 
 
