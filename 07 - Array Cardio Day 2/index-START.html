@@ -66,6 +66,18 @@
     // Find the comment with this ID
     // delete the comment with the ID of 823423
 
+    const index = comments.findIndex(comments => comment.id === 823423);
+    console.log(index);
+
+    // comments.splice(index, 1);
+    // Splice removes the item from the array
+
+    const newComments = [
+      ...comments.slice(0, index),
+      ...comments.slice(index+1)
+      // Spread operator in ES6
+    ];
+
   </script>
 </body>
 </html>
