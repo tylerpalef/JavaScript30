@@ -96,6 +96,12 @@
   </div>
 
 <script>
+function handleCheck(e){
+  console.log(e)
+};
+const checkboxes = document.querySelectorAll('.inbox input[type = "checkbox"]');
+
+checkboxes.forEach(checkbox => checkbox.addEventListener('click', handleCheck));
 </script>
 </body>
 </html>
