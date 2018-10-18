@@ -98,6 +98,7 @@
 <script>
 
 let lastChecked;
+
 function handleCheck(e){
   // Check if they had shift key down
   // AND check that they are checking it
@@ -118,7 +119,7 @@ function handleCheck(e){
     });
 }
 
-  lastChecked = e
+  lastChecked = this // updated lastChecked from e, to this. Resolved issue of iterating through checkboxes
 };
 const checkboxes = document.querySelectorAll('.inbox input[type = "checkbox"]');
 
